@@ -1,5 +1,6 @@
 from ._abstract import AbstractScraper
 from ._utils import get_minutes, normalize_string
+import re
 
 
 class BBCGoodFood(AbstractScraper):
@@ -45,3 +46,6 @@ class BBCGoodFood(AbstractScraper):
         )
 
         return normalize_string(instructions_string)
+
+    def servings(self):
+        return re.findall('\d+', self.soup.find('span', {'itemprop': 'recipeYield'}).string)[0]

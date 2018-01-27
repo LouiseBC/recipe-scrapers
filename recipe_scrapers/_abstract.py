@@ -60,3 +60,6 @@ class AbstractScraper():
 
     def instructions(self):
         raise NotImplementedError("This should be implemented.")
+
+    def servings(self):
+        raise NotImplementedError("This should be implemented.")

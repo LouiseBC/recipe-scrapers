@@ -16,7 +16,7 @@ class BBCFood(AbstractScraper):
             get_minutes(self.soup.find('p', {'itemprop': 'cookTime'}))
 
     def ingredients(self):
-        ingredients_html = self.soup.findAll('li', {'itemprop': "ingredients"})
+        ingredients_html = self.soup.findAll('li', {'itemprop': 'ingredients'})
 
         return [
             normalize_string(ingredient.get_text())
@@ -31,3 +31,6 @@ class BBCFood(AbstractScraper):
             normalize_string(instruction.get_text())
             for instruction in instructions_html
         ])
+    
+    def servings(self):
+        return self.soup.find('span', {'itemprop': 'recipeYield'}).get_text()
